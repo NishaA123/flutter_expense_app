@@ -20,22 +20,25 @@ class MyHomePage extends StatelessWidget {
     Transaction(
       id: 't1',
       title: 'New Dress',
-      amount: 1500,
+      amount: 69.34,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't2',
       title: 'Electricity Bill',
-      amount: 560,
+      amount: 45.67,
       date: DateTime.now(),
     ),
     Transaction(
       id: 't3',
       title: 'Sofa Furniture',
-      amount: 45000,
+      amount: 23.89,
       date: DateTime.now(),
     )
   ];
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,6 @@ class MyHomePage extends StatelessWidget {
           title: Text('Expense App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
@@ -53,6 +55,32 @@ class MyHomePage extends StatelessWidget {
                 color: Colors.amberAccent,
                 child: Text('CHART'),
                 elevation: 5,
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                      controller: titleController,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                      controller: amountController,
+                    ),
+                    FlatButton(
+                      textColor: Colors.purple,
+                      onPressed: () {
+                        print(titleController.text);
+                      },
+                      child: Text('Add Transaction'),
+                    )
+                  ],
+                ),
               ),
             ),
             Column(
@@ -71,7 +99,7 @@ class MyHomePage extends StatelessWidget {
                       )),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        "A : ${tx.amount}",
+                        "\$${tx.amount}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
